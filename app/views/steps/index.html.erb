@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all steps
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new step
+    </h2>
+
+    <form action="/insert_step" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="resources_box">
+          Resources
+        </label>
+
+        <input type="text" id="resources_box" name="query_resources">
+      </div>
+
+      <div>
+        <label for="skills_box">
+          Skills
+        </label>
+
+        <input type="text" id="skills_box" name="query_skills">
+      </div>
+
+      <div>
+        <label for="time_allotted_box">
+          Time allotted
+        </label>
+
+        <input type="text" id="time_allotted_box" name="query_time_allotted">
+      </div>
+
+      <div>
+        <label for="action_plan_id_box">
+          Action plan
+        </label>
+
+        <input type="text" id="action_plan_id_box" name="query_action_plan_id">
+      </div>
+
+      <button>
+        Create step
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Resources
+        </th>
+
+        <th>
+          Skills
+        </th>
+
+        <th>
+          Time allotted
+        </th>
+
+        <th>
+          Action plan
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_steps.each do |a_step| %>
+      <tr>
+        <td>
+          <%= a_step.id %>
+        </td>
+
+        <td>
+          <%= a_step.name %>
+        </td>
+
+        <td>
+          <%= a_step.resources %>
+        </td>
+
+        <td>
+          <%= a_step.skills %>
+        </td>
+
+        <td>
+          <%= a_step.time_allotted %>
+        </td>
+
+        <td>
+          <%= a_step.action_plan_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_step.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_step.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/steps/<%= a_step.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
