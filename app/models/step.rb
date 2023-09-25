@@ -12,4 +12,5 @@
 #  action_plan_id :integer
 #
 class Step < ApplicationRecord
+  belongs_to(:action_plan, required: true, class_name: "ActionPlan", foreign_key: "action_plan_id")
 end
