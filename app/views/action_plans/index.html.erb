@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all action plans
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new action plan
+    </h2>
+
+    <form action="/insert_action_plan" method="post">
+      <div>
+        <label for="time_box">
+          Time
+        </label>
+
+        <input type="text" id="time_box" name="query_time">
+      </div>
+
+      <div>
+        <label for="goal_id_box">
+          Goal
+        </label>
+
+        <input type="text" id="goal_id_box" name="query_goal_id">
+      </div>
+
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date">
+      </div>
+
+      <button>
+        Create action plan
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Time
+        </th>
+
+        <th>
+          Goal
+        </th>
+
+        <th>
+          Date
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_action_plans.each do |an_action_plan| %>
+      <tr>
+        <td>
+          <%= an_action_plan.id %>
+        </td>
+
+        <td>
+          <%= an_action_plan.time %>
+        </td>
+
+        <td>
+          <%= an_action_plan.goal_id %>
+        </td>
+
+        <td>
+          <%= an_action_plan.date %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_action_plan.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_action_plan.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/action_plans/<%= an_action_plan.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

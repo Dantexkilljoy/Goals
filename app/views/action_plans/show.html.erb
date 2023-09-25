@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Action plan #<%= @the_action_plan.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/action_plans">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_action_plan/<%= @the_action_plan.id %>">
+          Delete action plan
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Time
+      </dt>
+      <dd>
+        <%= @the_action_plan.time %>
+      </dd>
+
+      <dt>
+        Goal
+      </dt>
+      <dd>
+        <%= @the_action_plan.goal_id %>
+      </dd>
+
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_action_plan.date %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_action_plan.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_action_plan.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit action plan
+    </h2>
+
+    <form action="/modify_action_plan/<%= @the_action_plan.id %>"  method="post" >
+      <div>
+        <label for="time_box">
+          Time
+        </label>
+
+        <input type="text" id="time_box" name="query_time" value="<%= @the_action_plan.time %>">
+      </div>
+
+      <div>
+        <label for="goal_id_box">
+          Goal
+        </label>
+
+        <input type="text" id="goal_id_box" name="query_goal_id" value="<%= @the_action_plan.goal_id %>">
+      </div>
+
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date" value="<%= @the_action_plan.date %>">
+      </div>
+
+      <button>
+        Update action plan
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
