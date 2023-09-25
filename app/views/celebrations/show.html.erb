@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Celebration #<%= @the_celebration.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/celebrations">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_celebration/<%= @the_celebration.id %>">
+          Delete celebration
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Goal
+      </dt>
+      <dd>
+        <%= @the_celebration.goal_id %>
+      </dd>
+
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_celebration.date %>
+      </dd>
+
+      <dt>
+        Activity
+      </dt>
+      <dd>
+        <%= @the_celebration.activity %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_celebration.image %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_celebration.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_celebration.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit celebration
+    </h2>
+
+    <form action="/modify_celebration/<%= @the_celebration.id %>"  method="post" >
+      <div>
+        <label for="goal_id_box">
+          Goal
+        </label>
+
+        <input type="text" id="goal_id_box" name="query_goal_id" value="<%= @the_celebration.goal_id %>">
+      </div>
+
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date" value="<%= @the_celebration.date %>">
+      </div>
+
+      <div>
+        <label for="activity_box">
+          Activity
+        </label>
+
+        <input type="text" id="activity_box" name="query_activity" value="<%= @the_celebration.activity %>">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_celebration.image %>">
+      </div>
+
+      <button>
+        Update celebration
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
