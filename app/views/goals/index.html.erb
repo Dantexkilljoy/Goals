@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all goals
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new goal
+    </h2>
+
+    <form action="/insert_goal" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="progress_box">
+          Progress
+        </label>
+
+        <input type="text" id="progress_box" name="query_progress">
+      </div>
+
+      <div>
+        <label for="priorities_box">
+          Priorities
+        </label>
+
+        <input type="text" id="priorities_box" name="query_priorities">
+      </div>
+
+      <button>
+        Create goal
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Date
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Progress
+        </th>
+
+        <th>
+          Priorities
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_goals.each do |a_goal| %>
+      <tr>
+        <td>
+          <%= a_goal.id %>
+        </td>
+
+        <td>
+          <%= a_goal.name %>
+        </td>
+
+        <td>
+          <%= a_goal.date %>
+        </td>
+
+        <td>
+          <%= a_goal.user_id %>
+        </td>
+
+        <td>
+          <%= a_goal.progress %>
+        </td>
+
+        <td>
+          <%= a_goal.priorities %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_goal.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_goal.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/goals/<%= a_goal.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

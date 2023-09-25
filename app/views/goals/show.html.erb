@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Goal #<%= @the_goal.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/goals">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_goal/<%= @the_goal.id %>">
+          Delete goal
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_goal.name %>
+      </dd>
+
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_goal.date %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_goal.user_id %>
+      </dd>
+
+      <dt>
+        Progress
+      </dt>
+      <dd>
+        <%= @the_goal.progress %>
+      </dd>
+
+      <dt>
+        Priorities
+      </dt>
+      <dd>
+        <%= @the_goal.priorities %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_goal.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_goal.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit goal
+    </h2>
+
+    <form action="/modify_goal/<%= @the_goal.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_goal.name %>">
+      </div>
+
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date" value="<%= @the_goal.date %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_goal.user_id %>">
+      </div>
+
+      <div>
+        <label for="progress_box">
+          Progress
+        </label>
+
+        <input type="text" id="progress_box" name="query_progress" value="<%= @the_goal.progress %>">
+      </div>
+
+      <div>
+        <label for="priorities_box">
+          Priorities
+        </label>
+
+        <input type="text" id="priorities_box" name="query_priorities" value="<%= @the_goal.priorities %>">
+      </div>
+
+      <button>
+        Update goal
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
