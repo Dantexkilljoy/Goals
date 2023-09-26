@@ -3,8 +3,6 @@ class ActionPlansController < ApplicationController
     matching_action_plans = ActionPlan.all
 
     @list_of_action_plans = matching_action_plans.order({ :created_at => :desc })
-
-    render({ :template => "action_plans/index" })
   end
 
   def show
@@ -13,8 +11,6 @@ class ActionPlansController < ApplicationController
     matching_action_plans = ActionPlan.where({ :id => the_id })
 
     @the_action_plan = matching_action_plans.at(0)
-
-    render({ :template => "action_plans/show" })
   end
 
   def create
