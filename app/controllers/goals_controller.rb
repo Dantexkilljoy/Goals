@@ -1,62 +1,55 @@
 class GoalsController < ApplicationController
   def index
-    matching_goals = Goal.all
-
-    @list_of_goals = matching_goals.order({ :created_at => :desc })
-
-    render({ :template => "goals/index" })
+    @list_of_goals  = current_user.goals.all.order(created_at: :desc)
   end
 
   def show
-    the_id = params.fetch("path_id")
+    @the_goal = Goal.find(params[:id])
+  end
 
-    matching_goals = Goal.where({ :id => the_id })
-
-    @the_goal = matching_goals.at(0)
-
-    render({ :template => "goals/show" })
+  def new
+    @goal = Goal.new
   end
 
   def create
-    the_goal = Goal.new
-    the_goal.name = params.fetch("query_name")
-    the_goal.date = params.fetch("query_date")
-    the_goal.user_id = params.fetch("query_user_id")
-    the_goal.progress = params.fetch("query_progress")
-    the_goal.priorities = params.fetch("query_priorities")
-
-    if the_goal.valid?
-      the_goal.save
-      redirect_to("/goals", { :notice => "Goal created successfully." })
+    @goal = current_user.goals.new(goal_params)
+    if @goal.save
+      redirect_to @goal
     else
-      redirect_to("/goals", { :alert => the_goal.errors.full_messages.to_sentence })
+      redirect_to render :edit, status: :unprocessable_entity
     end
   end
 
+  def edit 
+    @goal = Goal.find(params[:id])
+  end
+
   def update
-    the_id = params.fetch("path_id")
-    the_goal = Goal.where({ :id => the_id }).at(0)
+    @the_goal = current_user.goals.find(params[:id])
 
-    the_goal.name = params.fetch("query_name")
-    the_goal.date = params.fetch("query_date")
-    the_goal.user_id = params.fetch("query_user_id")
-    the_goal.progress = params.fetch("query_progress")
-    the_goal.priorities = params.fetch("query_priorities")
-
-    if the_goal.valid?
-      the_goal.save
-      redirect_to("/goals/#{the_goal.id}", { :notice => "Goal updated successfully."} )
+    if @the_goal.update(goal_params)
+      redirect_to @the_goal
     else
-      redirect_to("/goals/#{the_goal.id}", { :alert => the_goal.errors.full_messages.to_sentence })
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    the_id = params.fetch("path_id")
-    the_goal = Goal.where({ :id => the_id }).at(0)
+    @the_goal = current_user.goals.find(params[:id])
 
-    the_goal.destroy
+    @the_goal.destroy
 
-    redirect_to("/goals", { :notice => "Goal deleted successfully."} )
+    redirect_to goals_path
+  end
+
+  private
+
+  def goal_params
+    params.require(:goal).permit(
+      :name,
+      :date,
+      :priorities,
+      :progress
+    )
   end
 end
