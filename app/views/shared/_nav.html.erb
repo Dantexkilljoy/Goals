@@ -12,21 +12,15 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Feed</a>
+            <%= link_to "My Celebrations", celebrations_path, class: "nav-link active" %>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Discover</a>
+            <%= link_to "My Action Plans", action_plans_path, class: "nav-link active" %>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Resources
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/photos">Photos</a></li>
-              <li><a class="dropdown-item" href="/likes">Likes</a></li>
-              <li><a class="dropdown-item" href="/follow_requests">Follow Requests</a></li>
-              <li><a class="dropdown-item" href="/comments">Comments</a></li>
-            </ul>
+
+          <li class="nav-item">
+            <%= link_to "My Goals", goals_path, class: "nav-link active" %>
           </li>
         <% end %>
       </ul>
@@ -37,11 +31,8 @@
           <% if user_signed_in? %>
 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Add post</a>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to "Your Profile", current_user.username , class: "nav-link active" %>
+             <%= link_to "Add Goal", new_goal_path, class: "nav-link active" %>
+              <%# <a class="nav-link active" aria-current="page" href="">Add Goal</a> %>
             </li>
 
             <li class="nav-item dropdown">
