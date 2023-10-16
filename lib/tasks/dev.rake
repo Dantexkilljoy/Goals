@@ -31,7 +31,7 @@ task sample_data: :environment do
 
   users.each do |user|
     rand(15).times do
-        goals = user.own_goals.create(
+        goals = user.goals.create(
         date: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
         name: Faker::JapaneseMedia::StudioGhibli.quote,
         priorities: Faker::Games::Overwatch.quote,
@@ -40,13 +40,12 @@ task sample_data: :environment do
       )
     
 
-    action_plans = goals.own_action_plans.create(
+    action_plans = goals.action_plans.create(
       date: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-      time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
       goal_id: goals.id
     )
 
-    action_plans.own_steps.create(
+    action_plans.steps.create(
       name: Faker::Games::Overwatch.hero,
       resources: Faker::Games::Minecraft.item,
       skills: Faker::Games::StreetFighter.move,
