@@ -12,9 +12,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Name
@@ -25,19 +22,11 @@
         </th>
 
         <th>
-          User
-        </th>
-
-        <th>
           Progress
         </th>
 
         <th>
           Priorities
-        </th>
-
-        <th>
-          Created at
         </th>
 
         <th>
@@ -50,9 +39,6 @@
 
       <% @list_of_goals.each do |a_goal| %>
       <tr>
-        <td>
-          <%= a_goal.id %>
-        </td>
 
         <td>
           <%= a_goal.name %>
@@ -60,10 +46,6 @@
 
         <td>
           <%= a_goal.date %>
-        </td>
-
-        <td>
-          <%= a_goal.user_id %>
         </td>
 
         <td>
@@ -75,16 +57,11 @@
         </td>
 
         <td>
-          <%= time_ago_in_words(a_goal.created_at) %> ago
-        </td>
-        <td>
           <%= time_ago_in_words(a_goal.updated_at) %> ago
         </td>
 
         <td>
-          <a href="/goals/<%= a_goal.id %>">
-            Show details
-          </a>
+          <%= link_to "Show Details", a_goal %>
         </td>
       </tr>
       <% end %>

@@ -12,6 +12,10 @@
       <div>
        <%= link_to "Delete", goal_path(@the_goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
       </div>
+
+      <div>
+        <%= link_to "Edit Goal", edit_goal_path %>
+      </div>
     </div>
 
     <dl>
@@ -46,6 +50,9 @@
   </div>
 </div>
 
+  <% if @the_goal.action_plans.present? %>
+    <%= link_to "Your action plan", action_plan_path(@the_goal.action_plans.first) %>
+  <% else %>
+    <%= link_to "Create an Action Plan", new_action_plan_path %>
+  <% end %>
 <hr>
-
-<%= link_to "Edit Goal", edit_goal_path %>
