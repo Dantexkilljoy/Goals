@@ -1,54 +1,60 @@
 class ActionPlansController < ApplicationController
-  def index
-    matching_action_plans = ActionPlan.all
+  before_action :set_action_plan, only: [:show, :edit, :update, :destroy]
 
-    @list_of_action_plans = matching_action_plans.order({ :created_at => :desc })
+  def index
+    @list_of_action_plans = ActionPlan.all.order({ :created_at => :desc })
   end
 
   def show
-    the_id = params.fetch("path_id")
+  end
 
-    matching_action_plans = ActionPlan.where({ :id => the_id })
-
-    @the_action_plan = matching_action_plans.at(0)
+  def new
+    @action_plan = ActionPlan.new
   end
 
   def create
-    the_action_plan = ActionPlan.new
-    the_action_plan.time = params.fetch("query_time")
-    the_action_plan.goal_id = params.fetch("query_goal_id")
-    the_action_plan.date = params.fetch("query_date")
-
-    if the_action_plan.valid?
-      the_action_plan.save
-      redirect_to("/action_plans", { :notice => "Action plan created successfully." })
+    # TODO: fix
+   @action_plan = current_user.goals.order(created_at: :desc).first.action_plans.new(action_plan_params)
+    if @action_plan.save
+      redirect_to @action_plan
     else
-      redirect_to("/action_plans", { :alert => the_action_plan.errors.full_messages.to_sentence })
+      redirect_to render :edit, status: :unprocessable_entity
     end
   end
 
-  def update
-    the_id = params.fetch("path_id")
-    the_action_plan = ActionPlan.where({ :id => the_id }).at(0)
+  def edit
+  end
 
-    the_action_plan.time = params.fetch("query_time")
-    the_action_plan.goal_id = params.fetch("query_goal_id")
-    the_action_plan.date = params.fetch("query_date")
-
-    if the_action_plan.valid?
-      the_action_plan.save
-      redirect_to("/action_plans/#{the_action_plan.id}", { :notice => "Action plan updated successfully."} )
+  def update    
+    if @action_plan.update(action_plan_params)
+      redirect_to @action_plan
     else
-      redirect_to("/action_plans/#{the_action_plan.id}", { :alert => the_action_plan.errors.full_messages.to_sentence })
+      redirect_to render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    the_id = params.fetch("path_id")
-    the_action_plan = ActionPlan.where({ :id => the_id }).at(0)
+    # goal_id = @action_plan.goal_id
 
-    the_action_plan.destroy
+    # TODO: handle failure
+    @action_plan.destroy
 
-    redirect_to("/action_plans", { :notice => "Action plan deleted successfully."} )
+    # TODO: test this works
+    redirect_to goals_path(@action_plan.goal_id)
+  end
+
+
+  private
+
+  def set_action_plan
+    # ActionPlan.find(params[:id])
+    @action_plan = current_user.action_plans.find(params[:id])
+  end
+
+  def action_plan_params
+    params.require(:action_plan).permit(
+      :date,
+      :goal_id
+    )
   end
 end
