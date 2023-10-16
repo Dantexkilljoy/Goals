@@ -1,13 +1,6 @@
 class ActionPlansController < ApplicationController
   before_action :set_action_plan, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @list_of_action_plans = ActionPlan.all.order({ :created_at => :desc })
-  end
-
-  def show
-  end
-
   def new
     @action_plan = ActionPlan.new
   end
@@ -15,7 +8,7 @@ class ActionPlansController < ApplicationController
   def create
    @action_plan = current_user.action_plans.new(action_plan_params)
     if @action_plan.save
-      redirect_to @action_plan
+      redirect_to @action_plan.goal
     else
       redirect_to render :edit, status: :unprocessable_entity
     end
@@ -26,7 +19,7 @@ class ActionPlansController < ApplicationController
 
   def update    
     if @action_plan.update(action_plan_params)
-      redirect_to @action_plan
+      redirect_to goals_path(@action_plan.goal_id)
     else
       redirect_to render :edit, status: :unprocessable_entity
     end
@@ -35,7 +28,7 @@ class ActionPlansController < ApplicationController
   def destroy
     @action_plan.destroy
 
-    redirect_to goals_path(@action_plan.goal_id)
+    redirect_to @action_plan.goal
   end
 
 

@@ -1,0 +1,36 @@
+<div>
+  <div>
+    <h2>
+      Your Action plan details
+    </h2>
+
+    <div>
+      <div>
+          <%= link_to "Delete", action_plan_path(action_plan), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+      </div>
+
+      <div>
+        <%= link_to "Edit", edit_action_plan_path(action_plan) %>
+      </div>
+    </div>
+
+  <hr>
+    <dl>
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= action_plan.date %>
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(action_plan.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>

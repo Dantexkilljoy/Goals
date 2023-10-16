@@ -5,7 +5,10 @@
   </div>
 
   <div class="my-2">
-    <%= form.collection_select(:goal_id, current_user.goals.reject { |goal| goal.action_plans.exists? }, :id, :name, { prompt: "Select a goal", class: "form-select" }) %>
+    <% if @action_plan.goal_id != nil %>
+    <% else %>
+      <%= form.collection_select(:goal_id, current_user.goals.reject { |goal| goal.action_plans.exists? }, :id, :name, { prompt: "Select a goal", class: "form-select" }) %>
+    <% end %>
   </div>
   
   <%= button_tag "Create Action Plan" %>

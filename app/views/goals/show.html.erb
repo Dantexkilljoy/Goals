@@ -50,9 +50,10 @@
   </div>
 </div>
 
+<hr>
+
   <% if @the_goal.action_plans.present? %>
-    <%= link_to "Your action plan", action_plan_path(@the_goal.action_plans.first) %>
+    <%= render 'action_plan', action_plan: @the_goal.action_plans.first %>
   <% else %>
     <%= link_to "Create an Action Plan", new_action_plan_path %>
   <% end %>
-<hr>
