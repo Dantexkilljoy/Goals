@@ -26,5 +26,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many(:goals, class_name: "Goal", foreign_key: "user_id", dependent: :destroy)
-  
+  has_many(:action_plans, through: :goals, source: :action_plans)
 end
