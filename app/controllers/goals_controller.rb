@@ -1,6 +1,7 @@
 class GoalsController < ApplicationController
   def index
-    @list_of_goals  = current_user.goals.all.order(created_at: :desc)
+    @list_of_incomplete_goals  = current_user.goals.all.where(progress: "incomplete").order(created_at: :desc)
+    @list_of_completed_goals = current_user.goals.all.where(progress: "complete").order(created: :desc)
   end
 
   def show

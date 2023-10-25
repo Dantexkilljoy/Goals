@@ -2,5 +2,10 @@
 
 <%= render 'form', goal: @goal %>
 
-<%= link_to 'Show', @goal %> |
-<%= link_to 'Back', goals_path %>
+<% if @goal.progress = "incomplete" %>
+  <div>
+    <%= render "progress_form", goal: @goal %>
+  </div>
+<% end %>
+
+<%= link_to 'back', :back %>

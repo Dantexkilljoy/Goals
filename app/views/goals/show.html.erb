@@ -52,8 +52,19 @@
 
 <hr>
 
-  <% if @the_goal.action_plans.present? %>
-    <%= render 'action_plan', action_plan: @the_goal.action_plans.first %>
+  <% if @the_goal.action_plan.present? %>
+    <%= render 'action_plan', action_plan: @the_goal.action_plan %>
+
+        <h2>Your Steps</h2>
+      <% if @the_goal.action_plan.steps.present? %>
+        <% @the_goal.action_plan.steps.each do |step| %>
+          <%= render 'step', step: step %>
+        <% end %>
+      <% end %>
+     <%= link_to "create a step", new_action_plan_step_path(@the_goal.action_plan) %>
   <% else %>
     <%= link_to "Create an Action Plan", new_action_plan_path %>
   <% end %>
+
+<hr>
+  

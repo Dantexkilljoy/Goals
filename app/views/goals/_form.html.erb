@@ -3,10 +3,9 @@
     <%= form.label :title, "Goal Name" %>
     <%= form.text_field :name %>
   </div>
-
+  
   <div>
-    <%= form.label :progress, "Progress" %>
-    <%= form.text_field :progress %>
+    <%= form.hidden_field :progress, value: "incomplete" %>
   </div>
 
   <div>
@@ -19,5 +18,5 @@
     <%= form.date_field :date %>
   </div>
   
-  <%= button_tag "Create Goal" %>
+  <%= button_tag "Set a goal" %>
 <% end %>

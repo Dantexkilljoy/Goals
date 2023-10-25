@@ -37,7 +37,7 @@
         </th>
       </tr>
 
-      <% @list_of_goals.each do |a_goal| %>
+      <% @list_of_incomplete_goals.each do |a_goal| %>
       <tr>
 
         <td>
@@ -67,6 +67,65 @@
       <% end %>
     </table>
   </div>
+</div>
+
+<div>
+    <table border="1">
+    <tr>
+
+      <th>
+        Name
+      </th>
+
+      <th>
+        Date
+      </th>
+
+      <th>
+        Progress
+      </th>
+
+      <th>
+        Priorities
+      </th>
+
+      <th>
+        Updated at
+      </th>
+
+      <th>
+      </th>
+    </tr>
+
+    <% @list_of_completed_goals.each do |goal| %>
+    <tr>
+
+      <td>
+        <%= goal.name %>
+      </td>
+
+      <td>
+        <%= goal.date %>
+      </td>
+
+      <td>
+        <%= goal.progress %>
+      </td>
+
+      <td>
+        <%= goal.priorities %>
+      </td>
+
+      <td>
+        <%= time_ago_in_words(goal.updated_at) %> ago
+      </td>
+
+      <td>
+        <%= link_to "Show Details", goal %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div>
 
 <hr>

@@ -13,6 +13,7 @@
 #
 class Goal < ApplicationRecord
   belongs_to(:user, required: true, class_name: "User", foreign_key: "user_id", counter_cache: true)
-  has_many(:own_action_plans, class_name: "ActionPlan", foreign_key: "goal_id", dependent: :destroy)
+  has_many(:action_plans, class_name: "ActionPlan", foreign_key: "goal_id", dependent: :destroy)
+  has_one(:action_plan) # TODO: verify this is the right logic
   has_many(:own_celebrations, class_name: "Celebration", foreign_key: "goal_id", dependent: :destroy)
 end
