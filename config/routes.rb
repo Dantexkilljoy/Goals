@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :goals
-  resources :steps
+
+  resources :action_plans do
+    resources :steps
+  end
   resources :celebrations
-  resources :action_plans
+
 
 end
