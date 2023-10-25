@@ -1,5 +1,5 @@
 class ActionPlansController < ApplicationController
-  before_action :set_action_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_action_plan, only: [:edit, :update, :destroy]
 
   def new
     @action_plan = ActionPlan.new
@@ -19,7 +19,7 @@ class ActionPlansController < ApplicationController
 
   def update    
     if @action_plan.update(action_plan_params)
-      redirect_to goals_path(@action_plan.goal_id)
+      redirect_to goal_path(@action_plan.goal_id)
     else
       redirect_to render :edit, status: :unprocessable_entity
     end
