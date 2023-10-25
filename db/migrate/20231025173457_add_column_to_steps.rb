@@ -1,0 +1,5 @@
+class AddColumnToSteps < ActiveRecord::Migration[7.0]
+  def change
+    add_column :steps, :status, :boolean, default: false
+  end
+end

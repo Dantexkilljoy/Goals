@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_11_163627) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_25_173457) do
   create_table "action_plans", force: :cascade do |t|
     t.integer "goal_id"
     t.date "date"
@@ -41,10 +41,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_163627) do
     t.string "name"
     t.string "resources"
     t.string "skills"
-    t.string "time_allotted"
+    t.datetime "time_allotted", precision: nil
     t.integer "action_plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status", default: false
   end
 
   create_table "users", force: :cascade do |t|
