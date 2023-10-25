@@ -6,7 +6,8 @@
 #  name           :string
 #  resources      :string
 #  skills         :string
-#  time_allotted  :string
+#  status         :boolean          default(FALSE)
+#  time_allotted  :datetime
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  action_plan_id :integer

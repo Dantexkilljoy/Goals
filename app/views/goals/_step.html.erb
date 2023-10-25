@@ -1,0 +1,19 @@
+<%= step.id %> |
+
+<%= step.name %> |
+
+<%= step.resources %> |
+
+<%= step.skills %> |
+  
+<%= step.time_allotted %> |
+
+<% if step.status != true%>
+  :empty_box:
+<% else %>
+  :check_mark:
+<% end %>
+
+<%= link_to "Delete", action_plan_step_path(step.action_plan_id, step), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %> |
+
+<%= link_to "Edit", edit_action_plan_step_path(step.action_plan_id, step) %> |
