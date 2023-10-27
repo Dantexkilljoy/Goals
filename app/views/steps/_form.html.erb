@@ -1,0 +1,23 @@
+<%= form_for [@action_plan, @step] do |form| %>
+  <div>
+    <%= form.label :title, "Step Name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :resources, "Resources" %>
+    <%= form.text_field :resources %>
+  </div>
+
+  <div>
+    <%= form.label :skills, "Skills" %>
+    <%= form.text_area :skills %>
+  </div>
+
+  <div>
+    <%= form.label :time_allotted, "Planned to be completed by" %>
+    <%= form.date_field :time_allotted %>
+  </div>
+
+  <%= button_tag "Create Step" %>
+<% end %>

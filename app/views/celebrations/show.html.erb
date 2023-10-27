@@ -1,0 +1,53 @@
+<div>
+  <div>
+    <h1>
+      <%= @celebration.activity %> details
+    </h1>
+
+    <div>
+      <div>
+        <%= link_to "back", :back %>
+      </div>
+
+      <div>
+        <%= link_to "Delete", celebration_path(@celebration), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+      </div>
+
+      <div>
+        <%= link_to "Edit Celebration", edit_celebration_path %>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Goal
+      </dt>
+      <dd>
+        <%= link_to "#{@celebration.goal.name}", @celebration.goal %>
+      </dd>
+
+      <dt>
+        Activity
+      </dt>
+      <dd>
+        <%= @celebration.activity %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @celebration.image %>
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@celebration.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>

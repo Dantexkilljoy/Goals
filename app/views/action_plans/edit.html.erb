@@ -1,0 +1,5 @@
+<h1>Edit Your Action Plan for <%= @action_plan.goal.name %></h1>
+
+<%= render 'form', action_plans: @action_plan %>
+
+<%= link_to 'Back', @action_plan.goal %>

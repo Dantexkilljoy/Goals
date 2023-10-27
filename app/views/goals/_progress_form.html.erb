@@ -1,0 +1,7 @@
+<%= form_with model: @goal do |form| %>
+  <div>
+    <%= form.hidden_field :progress, value: "complete" %>
+  </div>
+  
+  <%= button_tag "Mark as completed" %>
+<% end %>

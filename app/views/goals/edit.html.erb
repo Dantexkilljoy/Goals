@@ -1,0 +1,11 @@
+<h1>Editing Goal</h1>
+
+<%= render 'form', goal: @goal %>
+
+<% if @goal.progress = "incomplete" %>
+  <div>
+    <%= render "progress_form", goal: @goal %>
+  </div>
+<% end %>
+
+<%= link_to 'back', :back %>

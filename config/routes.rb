@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "goals#index"
+  
+  devise_for :users
+  
+  resources :goals
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :action_plans do
+    resources :steps
+  end
+  resources :celebrations
+
+
 end

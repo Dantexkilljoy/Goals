@@ -1,0 +1,81 @@
+<div>
+  <div>
+    <h1>
+      <%= @the_goal.name %>
+    </h1>
+
+    <div>
+
+    <% if @the_goal.celebration.present? %>
+        <div>
+          <%= link_to "Your celebration!", @the_goal.celebration %>
+        </div>
+    <% elsif @the_goal.progress = "completed" %>
+        <div>
+          <%= link_to "Celebrate your goal!", new_celebration_path %>
+        </div>
+    <% end %>
+
+      <div>
+        <%= link_to "Go back", :back %>
+      </div>
+
+      <div>
+       <%= link_to "Delete", goal_path(@the_goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+      </div>
+
+      <div>
+        <%= link_to "Edit Goal", edit_goal_path %>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_goal.date %>
+      </dd>
+
+      <dt>
+        Progress
+      </dt>
+      <dd>
+        <%= @the_goal.progress %>
+      </dd>
+
+      <dt>
+        Priorities
+      </dt>
+      <dd>
+        <%= @the_goal.priorities %>
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_goal.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+  <% if @the_goal.action_plan.present? %>
+    <%= render 'action_plan', action_plan: @the_goal.action_plan %>
+
+        <h2>Your Steps</h2>
+      <% if @the_goal.action_plan.steps.present? %>
+        <% @the_goal.action_plan.steps.each do |step| %>
+          <%= render 'step', step: step %>
+        <% end %>
+      <% end %>
+     <%= link_to "create a step", new_action_plan_step_path(@the_goal.action_plan) %>
+  <% else %>
+    <%= link_to "Create an Action Plan", new_action_plan_path %>
+  <% end %>
+
+<hr>
+  

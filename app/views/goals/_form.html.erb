@@ -1,0 +1,22 @@
+<%= form_with model: @goal do |form| %>
+  <div>
+    <%= form.label :title, "Goal Name" %>
+    <%= form.text_field :name %>
+  </div>
+  
+  <div>
+    <%= form.hidden_field :progress, value: "incomplete" %>
+  </div>
+
+  <div>
+    <%= form.label :priorities, "Priorities" %>
+    <%= form.text_area :priorities %>
+  </div>
+
+  <div>
+    <%= form.label :date, "Date" %>
+    <%= form.date_field :date %>
+  </div>
+  
+  <%= button_tag "Set a goal" %>
+<% end %>
