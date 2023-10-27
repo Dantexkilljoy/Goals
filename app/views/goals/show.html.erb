@@ -1,16 +1,16 @@
 <div>
   <div>
     <h1>
-      <%= @the_goal.name %>
+      <%= @goal.name %>
     </h1>
 
     <div>
 
-    <% if @the_goal.celebration.present? %>
+    <% if @goal.celebration.present? %>
         <div>
-          <%= link_to "Your celebration!", @the_goal.celebration %>
+          <%= link_to "Your celebration!", @goal.celebration %>
         </div>
-    <% elsif @the_goal.progress = "completed" %>
+    <% elsif @goal.progress == "complete" %>
         <div>
           <%= link_to "Celebrate your goal!", new_celebration_path %>
         </div>
@@ -21,7 +21,7 @@
       </div>
 
       <div>
-       <%= link_to "Delete", goal_path(@the_goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+       <%= link_to "Delete", goal_path(@goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
       </div>
 
       <div>
@@ -34,28 +34,34 @@
         Date
       </dt>
       <dd>
-        <%= @the_goal.date %>
+        <%= @goal.date %>
       </dd>
 
       <dt>
         Progress
       </dt>
       <dd>
-        <%= @the_goal.progress %>
+        <%= @goal.progress %>
+
+        <% if @goal.progress == "incomplete" %>
+          <div>
+            <%= render "progress_form", goal: @goal %>
+          </div>
+        <% end %>
       </dd>
 
       <dt>
         Priorities
       </dt>
       <dd>
-        <%= @the_goal.priorities %>
+        <%= @goal.priorities %>
       </dd>
 
       <dt>
         Updated at
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_goal.updated_at) %> ago
+        <%= time_ago_in_words(@goal.updated_at) %> ago
       </dd>
     </dl>
   </div>
@@ -63,16 +69,16 @@
 
 <hr>
 
-  <% if @the_goal.action_plan.present? %>
-    <%= render 'action_plan', action_plan: @the_goal.action_plan %>
+  <% if @goal.action_plan.present? %>
+    <%= render 'action_plan', action_plan: @goal.action_plan %>
 
         <h2>Your Steps</h2>
-      <% if @the_goal.action_plan.steps.present? %>
-        <% @the_goal.action_plan.steps.each do |step| %>
+      <% if @goal.action_plan.steps.present? %>
+        <% @goal.action_plan.steps.each do |step| %>
           <%= render 'step', step: step %>
         <% end %>
       <% end %>
-     <%= link_to "create a step", new_action_plan_step_path(@the_goal.action_plan) %>
+     <%= link_to "create a step", new_action_plan_step_path(@goal.action_plan) %>
   <% else %>
     <%= link_to "Create an Action Plan", new_action_plan_path %>
   <% end %>

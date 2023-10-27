@@ -5,7 +5,7 @@ class GoalsController < ApplicationController
   end
 
   def show
-    @the_goal = Goal.find(params[:id])
+    @goal = Goal.find(params[:id])
   end
 
   def new
@@ -26,19 +26,19 @@ class GoalsController < ApplicationController
   end
 
   def update
-    @the_goal = current_user.goals.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
 
-    if @the_goal.update(goal_params)
-      redirect_to @the_goal
+    if @goal.update(goal_params)
+      redirect_to @goal
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @the_goal = current_user.goals.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
 
-    @the_goal.destroy
+    @goal.destroy
 
     redirect_to goals_path
   end
