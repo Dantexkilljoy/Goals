@@ -10,53 +10,6 @@
 
 <div>
   <div>
-    <h2>
-      Add a new celebration
-    </h2>
-
-    <form action="/insert_celebration" method="post">
-      <div>
-        <label for="goal_id_box">
-          Goal
-        </label>
-
-        <input type="text" id="goal_id_box" name="query_goal_id">
-      </div>
-
-      <div>
-        <label for="date_box">
-          Date
-        </label>
-
-        <input type="date" id="date_box" name="query_date">
-      </div>
-
-      <div>
-        <label for="activity_box">
-          Activity
-        </label>
-
-        <input type="text" id="activity_box" name="query_activity">
-      </div>
-
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image">
-      </div>
-
-      <button>
-        Create celebration
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
-<div>
-  <div>
     <table border="1">
       <tr>
         <th>
@@ -68,19 +21,11 @@
         </th>
 
         <th>
-          Date
-        </th>
-
-        <th>
           Activity
         </th>
 
         <th>
           Image
-        </th>
-
-        <th>
-          Created at
         </th>
 
         <th>
@@ -98,11 +43,7 @@
         </td>
 
         <td>
-          <%= a_celebration.goal_id %>
-        </td>
-
-        <td>
-          <%= a_celebration.date %>
+          <%= a_celebration.goal.name %>
         </td>
 
         <td>
@@ -113,9 +54,6 @@
           <%= a_celebration.image %>
         </td>
 
-        <td>
-          <%= time_ago_in_words(a_celebration.created_at) %> ago
-        </td>
         <td>
           <%= time_ago_in_words(a_celebration.updated_at) %> ago
         </td>

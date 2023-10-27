@@ -1,20 +1,20 @@
 <div>
   <div>
     <h1>
-      Celebration #<%= @the_celebration.id %> details
+      <%= @celebration.activity %> details
     </h1>
 
     <div>
       <div>
-        <a href="/celebrations">
-          Go back
-        </a>
+        <%= link_to "back", :back %>
       </div>
 
       <div>
-        <a href="/delete_celebration/<%= @the_celebration.id %>">
-          Delete celebration
-        </a>
+        <%= link_to "Delete", celebration_path(@celebration), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+      </div>
+
+      <div>
+        <%= link_to "Edit Celebration", edit_celebration_path %>
       </div>
     </div>
 
@@ -23,93 +23,30 @@
         Goal
       </dt>
       <dd>
-        <%= @the_celebration.goal_id %>
-      </dd>
-
-      <dt>
-        Date
-      </dt>
-      <dd>
-        <%= @the_celebration.date %>
+        <%= link_to "#{@celebration.goal.name}", @celebration.goal %>
       </dd>
 
       <dt>
         Activity
       </dt>
       <dd>
-        <%= @the_celebration.activity %>
+        <%= @celebration.activity %>
       </dd>
 
       <dt>
         Image
       </dt>
       <dd>
-        <%= @the_celebration.image %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_celebration.created_at) %> ago
+        <%= @celebration.image %>
       </dd>
 
       <dt>
         Updated at
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_celebration.updated_at) %> ago
+        <%= time_ago_in_words(@celebration.updated_at) %> ago
       </dd>
     </dl>
-  </div>
-</div>
-
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit celebration
-    </h2>
-
-    <form action="/modify_celebration/<%= @the_celebration.id %>"  method="post" >
-      <div>
-        <label for="goal_id_box">
-          Goal
-        </label>
-
-        <input type="text" id="goal_id_box" name="query_goal_id" value="<%= @the_celebration.goal_id %>">
-      </div>
-
-      <div>
-        <label for="date_box">
-          Date
-        </label>
-
-        <input type="date" id="date_box" name="query_date" value="<%= @the_celebration.date %>">
-      </div>
-
-      <div>
-        <label for="activity_box">
-          Activity
-        </label>
-
-        <input type="text" id="activity_box" name="query_activity" value="<%= @the_celebration.activity %>">
-      </div>
-
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image" value="<%= @the_celebration.image %>">
-      </div>
-
-      <button>
-        Update celebration
-      </button>
-    </form>
   </div>
 </div>
 

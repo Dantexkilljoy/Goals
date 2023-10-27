@@ -28,4 +28,5 @@ class User < ApplicationRecord
   has_many(:goals, class_name: "Goal", foreign_key: "user_id", dependent: :destroy)
   has_many(:action_plans, through: :goals, source: :action_plans)
   has_many(:steps, through: :action_plans, source: :steps)
+  has_many(:celebrations, through: :goals, source: :celebrations)
 end

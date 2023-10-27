@@ -5,8 +5,19 @@
     </h1>
 
     <div>
+
+    <% if @the_goal.celebration.present? %>
+        <div>
+          <%= link_to "Your celebration!", @the_goal.celebration %>
+        </div>
+    <% elsif @the_goal.progress = "completed" %>
+        <div>
+          <%= link_to "Celebrate your goal!", new_celebration_path %>
+        </div>
+    <% end %>
+
       <div>
-        <%= link_to "Go back", goals_path %>
+        <%= link_to "Go back", :back %>
       </div>
 
       <div>

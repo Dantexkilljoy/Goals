@@ -1,60 +1,56 @@
 class CelebrationsController < ApplicationController
+  before_action :set_celebration, only: [:show, :edit, :update, :destroy]
+
   def index
-    matching_celebrations = Celebration.all
+    matching_celebrations = current_user.celebrations
 
     @list_of_celebrations = matching_celebrations.order({ :created_at => :desc })
-
-    render({ :template => "celebrations/index" })
   end
 
   def show
-    the_id = params.fetch("path_id")
+  end
 
-    matching_celebrations = Celebration.where({ :id => the_id })
-
-    @the_celebration = matching_celebrations.at(0)
-
-    render({ :template => "celebrations/show" })
+  def new
+    @celebration = Celebration.new
   end
 
   def create
-    the_celebration = Celebration.new
-    the_celebration.goal_id = params.fetch("query_goal_id")
-    the_celebration.date = params.fetch("query_date")
-    the_celebration.activity = params.fetch("query_activity")
-    the_celebration.image = params.fetch("query_image")
-
-    if the_celebration.valid?
-      the_celebration.save
-      redirect_to("/celebrations", { :notice => "Celebration created successfully." })
+    @celebration = current_user.celebrations.new(celebration_params)
+    if @celebration.save
+      redirect_to @celebration
     else
-      redirect_to("/celebrations", { :alert => the_celebration.errors.full_messages.to_sentence })
+      redirect_to render :edit, status: :unprocessable_entity
     end
+  end
+  
+  def edit
   end
 
   def update
-    the_id = params.fetch("path_id")
-    the_celebration = Celebration.where({ :id => the_id }).at(0)
-
-    the_celebration.goal_id = params.fetch("query_goal_id")
-    the_celebration.date = params.fetch("query_date")
-    the_celebration.activity = params.fetch("query_activity")
-    the_celebration.image = params.fetch("query_image")
-
-    if the_celebration.valid?
-      the_celebration.save
-      redirect_to("/celebrations/#{the_celebration.id}", { :notice => "Celebration updated successfully."} )
+    if @celebration.update(celebration_params)
+      redirect_to @celebration
     else
-      redirect_to("/celebrations/#{the_celebration.id}", { :alert => the_celebration.errors.full_messages.to_sentence })
+      redirect_to render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    the_id = params.fetch("path_id")
-    the_celebration = Celebration.where({ :id => the_id }).at(0)
+    @celebration.destroy
 
-    the_celebration.destroy
+    redirect_to celebrations_path
+  end
 
-    redirect_to("/celebrations", { :notice => "Celebration deleted successfully."} )
+  private
+
+  def set_celebration
+    @celebration = current_user.celebrations.find(params[:id])
+  end
+
+  def celebration_params
+    params.require(:celebration).permit(
+      :activity,
+      :image,
+      :goal_id
+    )
   end
 end

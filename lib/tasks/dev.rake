@@ -53,12 +53,13 @@ task sample_data: :environment do
       action_plan_id: action_plans.id
 
     )
-
-    goals.own_celebrations.create(
-      activity: Faker::JapaneseMedia::FmaBrotherhood.country,
-      date: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-      image: "https://robohash.org/#{rand(9999)}"
-    )
+    
+    if goals.progress == "complete"
+      goals.celebrations.create(
+        activity: Faker::JapaneseMedia::FmaBrotherhood.country,
+        image: "https://robohash.org/#{rand(9999)}"
+      )
+      end
     end
   end
 
