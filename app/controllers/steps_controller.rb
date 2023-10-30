@@ -12,7 +12,7 @@ class StepsController < ApplicationController
     if @step.save
       redirect_to @step.action_plan.goal
     else
-      redirect_to render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -23,7 +23,7 @@ class StepsController < ApplicationController
     if @step.update(step_params)
       redirect_to goal_path(@step.action_plan.goal_id)
     else
-      redirect_to render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -76,6 +76,11 @@
       <% if @goal.action_plan.steps.present? %>
         <% @goal.action_plan.steps.each do |step| %>
           <%= render 'step', step: step %>
+          <% if step.status == false %>
+            :blank_box:
+          <% else %>
+            :check_mark:
+          <% end %>
         <% end %>
       <% end %>
      <%= link_to "create a step", new_action_plan_step_path(@goal.action_plan) %>

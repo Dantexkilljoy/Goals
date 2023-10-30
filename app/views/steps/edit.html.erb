@@ -2,8 +2,4 @@
 
 <%= render 'form', step: @step %>
 
-<% if @step.status != true %>
-  <%= render 'status_form', step: @step %>
-<% end %>
-
 <%= link_to 'Back', @action_plan.goal %>

@@ -9,64 +9,62 @@
 <hr>
 
 <div>
-  <div>
-    <table border="1">
-      <tr>
+  <table border="1">
+    <tr>
 
-        <th>
-          Name
-        </th>
+      <th>
+        Name
+      </th>
 
-        <th>
-          Date
-        </th>
+      <th>
+        Date
+      </th>
 
-        <th>
-          Progress
-        </th>
+      <th>
+        Progress
+      </th>
 
-        <th>
-          Priorities
-        </th>
+      <th>
+        Priorities
+      </th>
 
-        <th>
-          Updated at
-        </th>
+      <th>
+        Updated at
+      </th>
 
-        <th>
-        </th>
-      </tr>
+      <th>
+      </th>
+    </tr>
 
-      <% @list_of_incomplete_goals.each do |a_goal| %>
-      <tr>
+    <% @list_of_incomplete_goals.each do |a_goal| %>
+    <tr>
 
-        <td>
-          <%= a_goal.name %>
-        </td>
+      <td>
+        <%= a_goal.name %>
+      </td>
 
-        <td>
-          <%= a_goal.date %>
-        </td>
+      <td>
+        <%= a_goal.date %>
+      </td>
 
-        <td>
-          <%= a_goal.progress %>
-        </td>
+      <td>
+        <%= a_goal.progress %>
+      </td>
 
-        <td>
-          <%= a_goal.priorities %>
-        </td>
+      <td>
+        <%= a_goal.priorities %>
+      </td>
 
-        <td>
-          <%= time_ago_in_words(a_goal.updated_at) %> ago
-        </td>
+      <td>
+        <%= time_ago_in_words(a_goal.updated_at) %> ago
+      </td>
 
-        <td>
-          <%= link_to "Show Details", a_goal %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+      <td>
+        <%= link_to "Show Details", a_goal %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div>
 
 <div>
@@ -91,9 +89,6 @@
 
       <th>
         Updated at
-      </th>
-
-      <th>
       </th>
     </tr>
 

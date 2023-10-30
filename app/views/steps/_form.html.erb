@@ -19,5 +19,10 @@
     <%= form.date_field :time_allotted %>
   </div>
 
+  <div>
+    <%= form.label :status, "Mark as completed" %>
+    <%= form.check_box  :status %>
+  </div>
+
   <%= button_tag "Create Step" %>
 <% end %>
