@@ -19,7 +19,7 @@ class CelebrationsController < ApplicationController
     if @celebration.save
       redirect_to @celebration
     else
-      redirect_to render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
   
@@ -30,7 +30,7 @@ class CelebrationsController < ApplicationController
     if @celebration.update(celebration_params)
       redirect_to @celebration
     else
-      redirect_to render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

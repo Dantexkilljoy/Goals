@@ -11,4 +11,5 @@
 #
 class Celebration < ApplicationRecord
   belongs_to(:goal, required: true, class_name: "Goal", foreign_key: "goal_id")
+  mount_uploader :image, ImageUploader
 end
