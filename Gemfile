@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
 
+gem "carrierwave"
+
+gem "cloudinary"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
@@ -75,7 +79,7 @@ end
 # ===========
 gem "appdev_support"
 gem "awesome_print"
-gem "devise"       # to be removed
+gem "devise"      
 gem "dotenv-rails"
 gem "faker"
 gem "htmlbeautifier"
