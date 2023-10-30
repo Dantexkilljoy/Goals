@@ -14,10 +14,6 @@
           <li class="nav-item">
             <%= link_to "My Celebrations", celebrations_path, class: "nav-link active" %>
           </li>
-
-          <li class="nav-item">
-            <%= link_to "My Goals", goals_path, class: "nav-link active" %>
-          </li>
         <% end %>
       </ul>
 
@@ -41,21 +37,10 @@
               </li>
 
               <li>
-                <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                <%= link_to "Sign out", destroy_user_session_path,  data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? You wish to sign out" }, method: :delete , class: "dropdown-item" %>
               </li>
               </ul>
             </li>
-
-          <% else %>
-
-            <li class="nav-item">
-              <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-            </li>
-
           <% end %>
         </ul>
 
