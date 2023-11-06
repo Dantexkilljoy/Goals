@@ -1,126 +1,53 @@
 <div>
-  <div>
-    <h1>
-      Your Goals
-    </h1>
+  <h2>
+    In Progress <span class="badge bg-warning-subtle border border-black text-dark-emphasis"><%= @list_of_incomplete_goals.count %></span>
+  </h2>
+</div>
+
+<hr>
+
+<div class="grid text-center">
+  <div class="row">
+    <% @list_of_incomplete_goals.each do |a_goal| %>
+    <div class="p-3">
+      <div class="card text-center bg-warning-subtle border border-black">
+        <div class="card-body">
+          <h5 class="card-title"><%= a_goal.name %></h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary"><%= a_goal.progress %> started on <%= a_goal.date %></h6>
+          <p class="card-text"><%= a_goal.priorities %></p>
+          <%= link_to "Show Details", a_goal, class: "link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
 
 <hr>
 
 <div>
-  <table border="1">
-    <tr>
-
-      <th>
-        Name
-      </th>
-
-      <th>
-        Date
-      </th>
-
-      <th>
-        Progress
-      </th>
-
-      <th>
-        Priorities
-      </th>
-
-      <th>
-        Updated at
-      </th>
-
-      <th>
-      </th>
-    </tr>
-
-    <% @list_of_incomplete_goals.each do |a_goal| %>
-    <tr>
-
-      <td>
-        <%= a_goal.name %>
-      </td>
-
-      <td>
-        <%= a_goal.date %>
-      </td>
-
-      <td>
-        <%= a_goal.progress %>
-      </td>
-
-      <td>
-        <%= a_goal.priorities %>
-      </td>
-
-      <td>
-        <%= time_ago_in_words(a_goal.updated_at) %> ago
-      </td>
-
-      <td>
-        <%= link_to "Show Details", a_goal %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+  <h2>
+    Completed <span class="badge bg-success-subtle border border-black text-dark-emphasis"><%= @list_of_completed_goals.count %></span>
+  </h2>
 </div>
 
-<div>
-    <table border="1">
-    <tr>
+<hr>
 
-      <th>
-        Name
-      </th>
-
-      <th>
-        Date
-      </th>
-
-      <th>
-        Progress
-      </th>
-
-      <th>
-        Priorities
-      </th>
-
-      <th>
-        Updated at
-      </th>
-    </tr>
-
-    <% @list_of_completed_goals.each do |goal| %>
-    <tr>
-
-      <td>
-        <%= goal.name %>
-      </td>
-
-      <td>
-        <%= goal.date %>
-      </td>
-
-      <td>
-        <%= goal.progress %>
-      </td>
-
-      <td>
-        <%= goal.priorities %>
-      </td>
-
-      <td>
-        <%= time_ago_in_words(goal.updated_at) %> ago
-      </td>
-
-      <td>
-        <%= link_to "Show Details", goal %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+<div class="grid text-center">
+  <div class="row">
+  <% @list_of_completed_goals.each do |goal| %>
+    <div class="p-3">
+      <div class="card text-center bg-success-subtle border border-black"">
+        <div class="card-body">
+          <h5 class="card-title"><%= goal.name %></h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary"><%= goal.progress %> started on <%= goal.date %></h6>
+          <p class="card-text"><%= goal.priorities %></p>
+          <%= link_to "Show Details", goal, class: "link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
 </div>
 
 <hr>
