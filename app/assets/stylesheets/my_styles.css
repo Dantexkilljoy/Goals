@@ -1,0 +1,8 @@
+.background {
+  background-color: #CAA478;
+}
+
+.ch :hover {
+  filter: brightness(75%);
+  transition: . 2s;
+}

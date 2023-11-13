@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
+<nav class="navbar navbar-expand-lg mb-4 border-bottom border-black ">
   <div class="container">
 
     <%= link_to "Goal Getter", root_path, class: "navbar-brand" %>
@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "My Celebrations", celebrations_path, class: "nav-link active" %>
+            <%= link_to "My Celebrations", celebrations_path, class: "nav-link active link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" %>
           </li>
         <% end %>
       </ul>
@@ -27,7 +27,7 @@
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <%= current_user.username %>
               </a>
               <ul class="dropdown-menu">

@@ -1,6 +1,9 @@
 class ActionPlansController < ApplicationController
   before_action :set_action_plan, only: [:edit, :update, :destroy]
 
+  def show
+  end
+
   def new
     @action_plan = ActionPlan.new
   end

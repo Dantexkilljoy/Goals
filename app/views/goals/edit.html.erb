@@ -1,11 +1,10 @@
 <h1>Editing Goal</h1>
 
-<%= render 'form', goal: @goal %>
+<div class="container bg-warning-subtle border border-black p-3 mt-3 mb-3 shadow p-3 mb-5 bg-body-tertiary rounded">
 
-<% if @goal.progress = "incomplete" %>
-  <div>
-    <%= render "progress_form", goal: @goal %>
+  <div class="d-flex justify-content-end px-2">
+    <%= link_to "<i class='fa-solid fa-x fa-xl'></i>".html_safe, :back  %>
   </div>
-<% end %>
 
-<%= link_to 'back', :back %>
+  <%= render 'form', goal: @goal %>
+</div>

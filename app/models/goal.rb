@@ -17,4 +17,13 @@ class Goal < ApplicationRecord
   has_one(:action_plan) # TODO: verify this is the right logic
   has_many(:celebrations, class_name: "Celebration", foreign_key: "goal_id", dependent: :destroy)
   has_one(:celebration)
+
+
+  def completed?
+    if self.progress == "complete"
+      return true
+    else
+      return false
+    end
+  end
 end

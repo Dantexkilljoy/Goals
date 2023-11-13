@@ -1,13 +1,35 @@
-<%= step.id %> |
+<div class="grid">
+  <div class="row">
+    <div class="col">
+      <% if step.status == false %>
+        :blank_box:
+      <% else %>
+        :check_mark:
+      <% end %>
+    </div>
 
-<%= step.name %> |
+    <div class="col">
+      <%= step.name %> 
+    </div>
 
-<%= step.resources %> |
+    <div class="col">
+      <%= step.resources %> 
+    </div>
 
-<%= step.skills %> |
-  
-<%= step.time_allotted %> |
+    <div class="col">
+      <%= step.skills %>
+    </div>
 
-<%= link_to "Delete", action_plan_step_path(step.action_plan_id, step), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %> |
+    <div class="col">
+      <%= step.time_allotted %>
+    </div>
 
-<%= link_to "Edit", edit_action_plan_step_path(step.action_plan_id, step) %> |
+    <div class="col">
+      <%= link_to "<i class='fa-solid fa-trash'></i>".html_safe, action_plan_step_path(step.action_plan_id, step), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+    </div>
+
+    <div class="col">
+      <%= link_to "<i class='fa-solid fa-pen-to-square'></i>".html_safe, edit_action_plan_step_path(step.action_plan_id, step) %>
+    </div>
+  </div>
+</div>

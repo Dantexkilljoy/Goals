@@ -1,21 +1,25 @@
-<div>
-  <h2>
-    In Progress <span class="badge bg-warning-subtle border border-black text-dark-emphasis"><%= @list_of_incomplete_goals.count %></span>
-  </h2>
+<div class="position-relative">
+  <div class="postion-absolute top-0 start-50">
+    <h2>
+      In Progress <span class="badge bg-warning-subtle border border-black text-dark-emphasis"><%= @list_of_incomplete_goals.count %></span>
+    </h2>
+  </div>
 </div>
 
-<hr>
-
-<div class="grid text-center">
-  <div class="row">
+<div class="grid gap-4 text-center mb-5">
+  <div class="row row-cols-2 row-cols-lg-4">
     <% @list_of_incomplete_goals.each do |a_goal| %>
-    <div class="p-3">
-      <div class="card text-center bg-warning-subtle border border-black">
-        <div class="card-body">
-          <h5 class="card-title"><%= a_goal.name %></h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary"><%= a_goal.progress %> started on <%= a_goal.date %></h6>
-          <p class="card-text"><%= a_goal.priorities %></p>
-          <%= link_to "Show Details", a_goal, class: "link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %>
+    <div class="col-auto">
+      <div class="p-3">
+        <div class="ch">
+          <%= link_to a_goal, class: "link-opacity-75-hover link-underline link-underline-opacity-0" do %>
+          <div class="card text-center bg-warning-subtle border border-black shadow p-4 mt-2 bg-body-tertiary rounded hover" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-text text-truncate"><%= a_goal.name %></h5>
+              <h6 class="card-text mb-2 text-body-secondary">Started on <%= a_goal.date %></h6>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -23,7 +27,6 @@
   </div>
 </div>
 
-<hr>
 
 <div>
   <h2>
@@ -31,23 +34,23 @@
   </h2>
 </div>
 
-<hr>
-
 <div class="grid text-center">
-  <div class="row">
+  <div class="row row row-cols-2 row-cols-lg-4">
   <% @list_of_completed_goals.each do |goal| %>
+  <div class="col-auto">
     <div class="p-3">
-      <div class="card text-center bg-success-subtle border border-black"">
-        <div class="card-body">
-          <h5 class="card-title"><%= goal.name %></h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary"><%= goal.progress %> started on <%= goal.date %></h6>
-          <p class="card-text"><%= goal.priorities %></p>
-          <%= link_to "Show Details", goal, class: "link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %>
+      <div class="ch">
+        <%= link_to goal, class: "link-opacity-75-hover link-underline link-underline-opacity-0" do %>
+        <div class="card text-center bg-success-subtle border border-black shadow p-4 mt-2 bg-body-tertiary rounded hover" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title text-truncate"><%= goal.name %></h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Started on <%= goal.date %></h6>
+          </div>
         </div>
+        <% end %>
       </div>
     </div>
+  </div>
   <% end %>
   </div>
 </div>
-
-<hr>

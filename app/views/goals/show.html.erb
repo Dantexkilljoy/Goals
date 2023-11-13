@@ -1,92 +1,112 @@
-<div>
-  <div>
-    <h1>
-      <%= @goal.name %>
-    </h1>
 
-    <div>
-
-    <% if @goal.celebration.present? %>
-        <div>
-          <%= link_to "Your celebration!", @goal.celebration %>
-        </div>
+<div class="container">
+<% if @goal.completed? == false %>
+  <div class="card text-center bg-warning-subtle border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
+<% else %>
+  <div class="card text-center bg-success-subtle border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
+<% end %>
+      <% if @goal.celebration.present? %>
+      <div class="card-header">
+        <%= link_to "Your celebration!", @goal.celebration %>
+      </div>
     <% elsif @goal.progress == "complete" %>
-        <div>
-          <%= link_to "Celebrate your goal!", new_celebration_path %>
-        </div>
+      <div class="card-header">
+        <%= link_to "Celebrate your goal!", new_celebration_path %>
+      </div>
     <% end %>
 
-      <div>
-        <%= link_to "Go back", :back %>
+    <div class="card-body-lg">
+      <div class="row justify-content-between">
+        <div class="col"">
+          <%= link_to goal_path(@goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete, class: "card-link" do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+
+        <div class="col">
+          <%= link_to edit_goal_path, class: "card-link" do %>
+            <i class='fa-solid fa-pen-to-square'></i>
+          <% end %>
+        </div>
+
+        <% if @goal.progress == "incomplete" %>
+          <div class="col">
+            <%= render "progress_form", goal: @goal %>
+          </div>
+        <% else %>
+          <div class="col">
+            <%= render "inprogress_form", goal: @goal %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="row">
+        <h1 class="card-title">
+          <%= @goal.name.capitalize %>
+        </h1>
       </div>
 
-      <div>
-       <%= link_to "Delete", goal_path(@goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+      <div class="row">
+        <h4 class="card-subtitle mb-2">
+          <%= @goal.progress.capitalize %>
+        </h4>
       </div>
 
-      <div>
-        <%= link_to "Edit Goal", edit_goal_path %>
+      <div class="row">
+        <h6>
+          My priorities
+        </h6>
+
+        <p class="card-text">
+          <%= @goal.priorities %>
+        </p>
       </div>
     </div>
 
-    <dl>
-      <dt>
-        Date
-      </dt>
-      <dd>
-        <%= @goal.date %>
-      </dd>
+    <div>
+    <% if @goal.action_plan.present? %>
+  <p>
+    <button class="btn btn-info mt-4 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+      Your Action Plan
+    </button>
+  </p>
+    <div class="collapse collapse-vertical" id="collapseWidthExample">
+    <div class="card card-body bg-transparent">
+      <%= render 'action_plan', action_plan: @goal.action_plan %>
+    </div>
 
-      <dt>
-        Progress
-      </dt>
-      <dd>
-        <%= @goal.progress %>
-
-        <% if @goal.progress == "incomplete" %>
-          <div>
-            <%= render "progress_form", goal: @goal %>
+  <% if @goal.action_plan.steps.present? %>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+        <% @goal.action_plan.steps.each do |step| %>
+          <button class="accordion-button fw-bold bg-info-subtle border border-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <%= step.name %>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse">
+          <div class="accordion-body bg-transparent">
+            <%= render "step", step: step %>
           </div>
+        </div>
         <% end %>
-      </dd>
+      </div>
+    </div>
+    <% end%>
+    <div>
+      <%= link_to "create a step", new_action_plan_step_path(@goal.action_plan) %>
+    </div>
+    <% else %>
+    <div>
+      <%= link_to "Create an Action Plan", new_action_plan_path %>
+    </div>
+    <% end %>
+    </div>
 
-      <dt>
-        Priorities
-      </dt>
-      <dd>
-        <%= @goal.priorities %>
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@goal.updated_at) %> ago
-      </dd>
-    </dl>
+    <div class="card-footer text-body-secondary">
+        Created on <%= @goal.date %>
+    </div>
   </div>
 </div>
 
-<hr>
-
-  <% if @goal.action_plan.present? %>
-    <%= render 'action_plan', action_plan: @goal.action_plan %>
-
-        <h2>Your Steps</h2>
-      <% if @goal.action_plan.steps.present? %>
-        <% @goal.action_plan.steps.each do |step| %>
-          <%= render 'step', step: step %>
-          <% if step.status == false %>
-            :blank_box:
-          <% else %>
-            :check_mark:
-          <% end %>
-        <% end %>
-      <% end %>
-     <%= link_to "create a step", new_action_plan_step_path(@goal.action_plan) %>
-  <% else %>
-    <%= link_to "Create an Action Plan", new_action_plan_path %>
-  <% end %>
-
-<hr>
   

@@ -1,22 +1,26 @@
-<%= form_with model: @goal do |form| %>
-  <div>
-    <%= form.label :title, "Goal Name" %>
-    <%= form.text_field :name %>
-  </div>
-  
-  <div>
-    <%= form.hidden_field :progress, value: "incomplete" %>
-  </div>
+<div class="container">
+  <div class="row">
+  <%= form_with model: @goal do |form| %>
+    <div class="col mb-3 fs-3">
+      <%= form.label :title, "Goal Name", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control border border-black bg-transparent" %>
+    </div>
+    
+    <div>
+      <%= form.hidden_field :progress, value: "incomplete" %>
+    </div>
 
-  <div>
-    <%= form.label :priorities, "Priorities" %>
-    <%= form.text_area :priorities %>
-  </div>
+    <div class="col mb-3 fs-3">
+      <%= form.label :priorities, "Priorities", class: "form-label" %>
+      <%= form.text_area :priorities, class: "form-control border border-black bg-transparent", placeholder: "What you should focus on to achieve your goal." %>
+    </div>
 
-  <div>
-    <%= form.label :date, "Date" %>
-    <%= form.date_field :date %>
+    <div class="col-6 mb-3 fs-3">
+      <%= form.label :date, "Date", class: "form-label" %>
+      <%= form.date_field :date, class: "form-control border border-black bg-transparent" %>
+    </div>
+    
+    <%= button_tag "Set a goal", class: "btn btn-outline-success" %>
+  <% end %>
   </div>
-  
-  <%= button_tag "Set a goal" %>
-<% end %>
+</div>

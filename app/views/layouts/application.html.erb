@@ -8,13 +8,14 @@
 
     <%= render "shared/cdn_assets" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "my_styles", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="background">
     <%= render "shared/nav" %>
 
-     <div class="container">
+    <div class="container-xxl">
 
     <% if notice.present? %>
       <%= render "shared/flash", message: notice, css_class: "success" %>
