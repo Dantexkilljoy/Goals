@@ -1,15 +1,19 @@
 <div class="container px-4 text-center">
     <div class="row gx-5">
       <div class="col">
-        <%= link_to "<i class='fa-solid fa-trash'></i>".html_safe, action_plan_path(action_plan), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible and will delete all of your steps you have created." }, method: :delete %>
+        <%= link_to action_plan_path(action_plan), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible and will delete all of your steps you have created." }, method: :delete do %>
+        <i class='fa-solid fa-trash'></i>
+        <% end %>
       </div>
 
       <div class="col">
-        Started on <%= action_plan.date %>
+        You started your activity on <%= action_plan.date %>
       </div>
 
       <div class="col">
-        <%= link_to "<i class='fa-solid fa-pen-to-square'></i>".html_safe, edit_action_plan_path(action_plan) %>
+        <%= link_to edit_action_plan_path(action_plan) do %>
+          <i class='fa-solid fa-pen-to-square'></i>
+        <% end %>
       </div>
     </div>
 </div>

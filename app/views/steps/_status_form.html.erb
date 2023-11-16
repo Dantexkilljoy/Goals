@@ -1,0 +1,6 @@
+<%= form_for [step.action_plan, step] do |form| %>
+  <div>
+  <%= form.hidden_field  :status, value: true %>
+  </div>
+  <%= button_tag "Mark as complete", class: "btn btn-outline-success" %>
+<% end %>

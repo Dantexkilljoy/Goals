@@ -1,15 +1,15 @@
 <%= form_with model: @action_plan do |form| %>
-  <div>
-    <%= form.label :date, "Date" %>
+  <div class="mb-3">
+    <%= form.label :date, "When do I start?", class: "form-label" %>
     <%= form.date_field :date %>
   </div>
 
-  <div class="my-2">
+  <div class="mb-3">
     <% if @action_plan.goal_id != nil %>
     <% else %>
-      <%= form.collection_select(:goal_id, current_user.goals.reject { |goal| goal.action_plans.exists? }, :id, :name, { prompt: "Select a goal", class: "form-select" }) %>
+      <%= form.collection_select :goal_id, current_user.goals.reject { |goal| goal.action_plans.exists? }, :id, :name, { prompt: "Select a goal" }, class: "form-select" %>
     <% end %>
   </div>
   
-  <%= button_tag "Create Action Plan" %>
+  <%= button_tag "Create Action Plan", class: "btn btn-outline-success" %>
 <% end %>

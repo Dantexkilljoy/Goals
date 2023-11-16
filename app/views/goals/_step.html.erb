@@ -2,14 +2,10 @@
   <div class="row">
     <div class="col">
       <% if step.status == false %>
-        :blank_box:
+        <%= render "steps/status_form", step: step %>
       <% else %>
-        :check_mark:
+        ✅ 
       <% end %>
-    </div>
-
-    <div class="col">
-      <%= step.name %> 
     </div>
 
     <div class="col">
@@ -21,15 +17,19 @@
     </div>
 
     <div class="col">
-      <%= step.time_allotted %>
+      <%= step.time_allotted.strftime("%m/%d/%y") %>
     </div>
 
     <div class="col">
-      <%= link_to "<i class='fa-solid fa-trash'></i>".html_safe, action_plan_step_path(step.action_plan_id, step), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete %>
+      <%= link_to action_plan_step_path(step.action_plan_id, step), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete do %>
+        <i class='fa-solid fa-trash'></i>
+      <% end %>
     </div>
 
     <div class="col">
-      <%= link_to "<i class='fa-solid fa-pen-to-square'></i>".html_safe, edit_action_plan_step_path(step.action_plan_id, step) %>
+      <%= link_to edit_action_plan_step_path(step.action_plan_id, step) do %>
+        <i class='fa-solid fa-pen-to-square'></i>
+      <% end %>
     </div>
   </div>
 </div>
