@@ -17,6 +17,7 @@ class Goal < ApplicationRecord
   has_one(:action_plan) # TODO: verify this is the right logic
   has_many(:celebrations, class_name: "Celebration", foreign_key: "goal_id", dependent: :destroy)
   has_one(:celebration)
+  has_many(:steps, through: :action_plan, source: :steps)
 
 
   def completed?
