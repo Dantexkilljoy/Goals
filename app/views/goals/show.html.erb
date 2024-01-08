@@ -1,108 +1,144 @@
 
 <div class="container">
-<% if @goal.completed? == false %>
-  <div class="card text-center bg-warning-subtle border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
-<% else %>
-  <div class="card text-center bg-success-subtle border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
-<% end %>
-      <% if @goal.celebration.present? %>
-      <div class="card-header">
-        <%= link_to "Your celebration!", @goal.celebration %>
-      </div>
-    <% elsif @goal.progress == "complete" %>
-      <div class="card-header">
-        <%= link_to "Celebrate your goal!", new_celebration_path %>
-      </div>
-    <% end %>
+  <% if @goal.completed? == false %>
+    <div class="card text-center bg-warning-subtle border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
+  <% else %>
+    <div class="card text-center bg-success-subtle border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
+  <% end %>
+    <% if @goal.celebration.present? %>
+    <div class="card-header">
+      <%= link_to "Your celebration!", @goal.celebration %>
+    </div>
+  <% elsif @goal.progress == "complete" %>
+    <div class="card-header">
+      <%= link_to "Celebrate your goal!", new_celebration_path %>
+    </div>
+  <% end %>
 
-    <div class="card-body-lg">
-      <div class="row justify-content-between">
-        <div class="col"">
-          <%= link_to goal_path(@goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete, class: "card-link" do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-        </div>
-
-        <div class="col">
-          <%= link_to edit_goal_path, class: "card-link" do %>
-            <i class='fa-solid fa-pen-to-square'></i>
-          <% end %>
-        </div>
-
-        <% if @goal.progress == "incomplete" %>
-          <div class="col">
-            <%= render "progress_form", goal: @goal %>
-          </div>
-        <% else %>
-          <div class="col">
-            <%= render "inprogress_form", goal: @goal %>
-          </div>
+  <div class="card-body-lg">
+    <div class="row justify-content-between">
+      <div class="col"">
+        <%= link_to goal_path(@goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete, class: "card-link" do %>
+          <i class="fa-solid fa-trash text-muted"></i>
         <% end %>
       </div>
-      
-      <div class="row">
-        <h1 class="card-title">
-          <%= @goal.name.capitalize %>
-        </h1>
+
+      <div class="col">
+        <button type="button" class="fa-solid fa-edit" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        </button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content bg-warning-subtle">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit your goal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= render "form", goal: @goal %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= link_to edit_goal_path, class: "card-link" do %>
+         
+        <% end %>
       </div>
 
-      <div class="row">
-        <h4 class="card-subtitle mb-2">
-          <%= @goal.progress.capitalize %>
-        </h4>
-      </div>
+      <% if @goal.progress == "incomplete" %>
+        <div class="col">
+          <%= render "progress_form", goal: @goal %>
+        </div>
+      <% else %>
+        <div class="col">
+          <%= render "inprogress_form", goal: @goal %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="row">
+      <h1 class="card-title">
+        <%= @goal.name.capitalize %>
+      </h1>
+    </div>
 
-      <div class="row">
-        <h6>
-          My priorities
-        </h6>
+    <div class="row">
+      <h4 class="card-subtitle mb-2">
+        <%= @goal.progress.capitalize %>
+      </h4>
+    </div>
 
-        <p class="card-text">
-          <%= @goal.priorities %>
+    <div class="row">
+      <h6>
+        My priorities
+      </h6>
+
+      <p class="card-text">
+        <%= @goal.priorities %>
+      </p>
+    </div>
+
+    <% if @goal.action_plan.present? %>
+      <div>
+        <p class="d-inline-flex gap-1">
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Your Action Plan</a>
+        <% if @goal.steps.present? %>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Your Steps</button>
+        <% end %>
         </p>
       </div>
-    </div>
 
-    <div>
-    <% if @goal.action_plan.present? %>
-  <p>
-    <button class="btn btn-info mt-4 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-      Your Action Plan
-    </button>
-  </p>
-    <div class="collapse collapse-vertical" id="collapseWidthExample">
-    <div class="card card-body bg-transparent">
-      <%= render 'action_plan', action_plan: @goal.action_plan %>
-    </div>
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body bg-transparent">
+              <%= render 'action_plan', action_plan: @goal.action_plan %>
+            </div>
+          </div>
+        </div>
+  
 
-    <% if @goal.action_plan.steps.present? %>
-    <div class="container mt-3">
-      <button class="btn btn-outline-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Your Steps</button>
-    </div>
-    <div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">List of Steps</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <% @goal.action_plan.steps.each do |step| %>
-        <p><%= step.name %></p>
-        <%= render "step", step: step %>
-        <% end %>
+    <% if @goal.steps.present? %>
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+          <div class="card card-body bg-transparent">
+            <% @goal.steps.each do |step| %>
+              <%= render "step", step: step %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-    <% end%>
+    <% end %>
+
     <div class="container mt-3">
-      <%= link_to "create a step", new_action_plan_step_path(@goal.action_plan) %>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Create a new step
+      </button>
     </div>
+    
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-info-subtle">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">New Step</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= render 'steps/form', step: @step %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <% else %>
-    <div>
+    <div class="container mt-3">
       <%= link_to "Create an Action Plan", new_action_plan_path %>
     </div>
     <% end %>
     </div>
 
-    <div class="card-footer text-body-secondary">
+    <div class="card-footer text-body-secondary mt-3">
         Created on <%= @goal.date %>
     </div>
   </div>
