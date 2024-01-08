@@ -1,28 +1,28 @@
-<%= form_for [@action_plan, @step] do |form| %>
-  <div>
+<%= form_for [@goal.action_plan, Step.new] do |form| %>
+   <div class="col mb-3 fs-3">
     <%= form.label :title, "Step Name" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control border border-black bg-transparent" %>
   </div>
 
-  <div>
+   <div class="col mb-3 fs-3">
     <%= form.label :resources, "Resources" %>
-    <%= form.text_field :resources %>
+    <%= form.text_field :resources, class: "form-control border border-black bg-transparent" %>
   </div>
 
-  <div>
+   <div class="col mb-3 fs-3">
     <%= form.label :skills, "Skills" %>
-    <%= form.text_area :skills %>
+    <%= form.text_area :skills,class: "form-control border border-black bg-transparent", placeholder: "Topics that be learned to complete this step." %>
   </div>
 
-  <div>
+   <div class="col mb-3 fs-3">
     <%= form.label :time_allotted, "Planned to be completed by" %>
-    <%= form.date_field :time_allotted %>
+    <%= form.date_field :time_allotted, class: "form-control border border-black bg-transparent"  %>
   </div>
 
-  <div>
-    <%= form.label :status, "Mark as completed" %>
-    <%= form.check_box  :status %>
+   <div class="form-check col mb-3 fs-3">
+    <%= form.label :status, "Mark as completed", class: "form-check-label" %>
+    <%= form.check_box  :status, class: "form-check-input"%>
   </div>
 
-  <%= button_tag "Create Step" %>
+  <%= button_tag "Create Step", class: "btn btn-outline-success" %>
 <% end %>

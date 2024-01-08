@@ -17,20 +17,38 @@ class StepsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def update
     if @step.update(step_params)
-      redirect_to goal_path(@step.action_plan.goal_id)
+      respond_to do |format|
+        format.js
+        format.html { redirect_to root_url, notice: "Step was successfully updated." }
+        format.json { render :show, status: :ok, location: step }
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.js
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @step.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @step.destroy
-
-    redirect_to @step.action_plan.goal
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_url, notice: "Step was successfully destroyed." }
+      format.json { head :no_content }
+      
+      format.js do
+        render template: "steps/destroy"
+      end
+    end
   end
 
   private
