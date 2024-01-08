@@ -1,11 +1,8 @@
-<div class="grid">
-  <div class="row">
+<div id="<%= dom_id(step) %>_form" class="grid">
+  <div id="<%= dom_id(step) %>" class="row" >
+    <p><%= step.name %></p>
     <div class="col">
-      <% if step.status == false %>
-        <%= render "steps/status_form", step: step %>
-      <% else %>
-        ✅ 
-      <% end %>
+      <%= render "steps/status_form", step: step  %>
     </div>
 
     <div class="col">
@@ -21,8 +18,8 @@
     </div>
 
     <div class="col">
-      <%= link_to action_plan_step_path(step.action_plan_id, step), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete do %>
-        <i class='fa-solid fa-trash'></i>
+      <%= link_to action_plan_step_path(step.action_plan_id, step), method: :delete, class: "btn btn-link btn-sm", remote: true do %>
+        <i class="fas fa-trash fa-fw"></i>
       <% end %>
     </div>
 
