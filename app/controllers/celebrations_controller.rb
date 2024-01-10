@@ -3,7 +3,6 @@ class CelebrationsController < ApplicationController
 
   def index
     matching_celebrations = current_user.celebrations
-
     @list_of_celebrations = matching_celebrations.order({ :created_at => :desc })
   end
 
