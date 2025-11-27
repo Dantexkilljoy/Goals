@@ -239,6 +239,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.2-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.15.2-x64-mingw-ucrt)
+      racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     octokit (5.6.1)
@@ -247,6 +249,7 @@ GEM
     oj (3.13.23)
     orm_adapter (0.5.0)
     pg (1.4.6)
+    pg (1.4.6-x64-mingw-ucrt)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -373,6 +376,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2-arm64-darwin)
+    sqlite3 (1.6.2-x64-mingw-ucrt)
     sqlite3 (1.6.2-x86_64-linux)
     ssrf_filter (1.1.2)
     stimulus-rails (1.2.1)
@@ -431,6 +435,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x64-mingw-ucrt
   x86_64-linux
 
 DEPENDENCIES
@@ -478,7 +483,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 3.2.1p31
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.6
