@@ -40,3 +40,4 @@ examples.txt
 # Un-ignore SQLite3 db
 !/db/*.sqlite3
 !/db/*.sqlite3-journal
+/.development.sqlite3
