@@ -34,7 +34,7 @@ class GoalsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-
+  #this was made to redirect to root after deleting a goal due to an issue with turbo not redirecting properly and trying to pull the params in the show method after the goal was deleted
   def destroy
     @goal = current_user.goals.find(params[:id])
 
