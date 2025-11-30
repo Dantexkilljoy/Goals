@@ -18,7 +18,7 @@
   <div class="card-body-lg">
     <div class="row justify-content-between">
       <div class="col"">
-        <%= link_to goal_path(@goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, method: :delete, class: "card-link" do %>
+        <%= link_to goal_path(@goal), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure? This is NOT reversible" }, class: "card-link" do %>
           <i class="fa-solid fa-trash text-muted"></i>
         <% end %>
       </div>

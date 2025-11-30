@@ -5,7 +5,11 @@ class GoalsController < ApplicationController
   end
 
   def show
-    @goal = Goal.find(params[:id])
+    if Goal.try(params[:id]) == nil
+      redirect_to goals_path, alert: "Goal not found."
+    else 
+      @goal = Goal.try(params[:id])
+    end
   end
 
   def new
@@ -40,7 +44,7 @@ class GoalsController < ApplicationController
 
     @goal.destroy
 
-    redirect_to goals_path
+    redirect_back fallback_location: root_url, notice: "Goal was successfully destroyed."
   end
 
   private
