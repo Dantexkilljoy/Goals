@@ -21,6 +21,7 @@ class StepsController < ApplicationController
       format.html
       format.js
     end
+    @goal = @step.action_plan.goal
   end
   
   def update
