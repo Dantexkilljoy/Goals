@@ -41,3 +41,4 @@ examples.txt
 !/db/*.sqlite3
 !/db/*.sqlite3-journal
 /.development.sqlite3
+db/development.sqlite3
